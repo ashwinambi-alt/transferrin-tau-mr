@@ -1,0 +1,27 @@
+Category,Outcome,GWAS_source,GWAS_accession,N_outcome,nSNPs,IVW_beta,IVW_SE,IVW_pvalue,Direction,Egger_intercept_p,Cochran_Q_p,Weighted_median_p,Steiger_pass,Notes
+PRIMARY,Circulating total-tau,Sarnowski 2022,ebi-a-GCST90095138,14721,8,-0.039,0.013,2.88e-03,Protective,0.202,0.544,0.001,Yes,Pre-specified primary outcome
+PRIMARY,MVMR - transferrin effect,Benyamin 2014,ieu-a-1052,14721,10,-0.044,0.010,2.29e-05,Protective,-,-,-,Yes,Conditioned on serum iron (ieu-a-1049); serum iron p=0.817
+SECONDARY,CSF p-tau APOE4 non-carriers,Jansen 2022,GCST90134631,3141,8,-0.116,0.059,0.048,Protective,0.267,-,-,Yes,"Fragile: 6/8 LOO removals lose significance"
+SECONDARY,FTD-TDP,-,ieu-b-43,3024,5,-0.306,0.140,0.028,Protective,0.983,0.381,0.054,Yes,"Winner's curse likely; all 5 methods agree on direction"
+EXPLORATORY,CSF p-tau main,Jansen 2022,GCST90129600,7798,8,-0.050,0.033,0.134,Protective,0.267,-,-,Yes,5/5 methods protective direction
+EXPLORATORY,CSF p-tau normal amyloid,Jansen 2022,GCST90134633,3174,8,-0.075,0.057,0.185,Protective,-,-,-,Yes,5/5 methods protective direction
+EXPLORATORY,ALS (excl. rs1800562),van Rheenen 2021,ebi-a-GCST90027164,138086,7,-0.060,0.026,0.020,Protective,0.482,-,0.028,Yes,Survives weighted median; HFE removal unmasks signal
+EXPLORATORY,ALS (full instrument set),van Rheenen 2021,ebi-a-GCST90027164,138086,8,-0.026,0.028,0.357,Protective,0.482,0.147,-,Yes,Protective direction but attenuated by HFE
+EXPLORATORY,NfL heavy chain,Sun BB 2018,prot-a-2027,3301,8,-0.080,0.054,0.142,Protective,-,-,-,Yes,Underpowered pQTL (n=3301)
+EXPLORATORY,Entorhinal thickness (L),Elliott 2021,ubm-b-1119,31967,8,-0.018,0.015,0.225,Protective,-,-,-,Yes,-
+EXPLORATORY,Entorhinal thickness (R),Elliott 2021,ubm-b-1150,31968,8,-0.020,0.031,0.533,Protective,-,-,-,Yes,-
+EXPLORATORY,Hippocampal volume,Hibar 2015 (ENIGMA),ieu-a-1045,30717,7,-0.669,0.660,0.943,Protective,-,-,-,Yes,Highly underpowered for this effect size
+NULL,CSF p-tau abnormal amyloid,Jansen 2022,GCST90134630,3534,8,-0.018,0.049,0.713,Protective,-,-,-,Yes,Upstream mechanism attenuated by established pathology
+NULL,CSF p-tau APOE4 carriers,Jansen 2022,GCST90134632,3047,8,+0.016,0.053,0.769,Null,-,-,-,Yes,APOE4 effect modification - overrides transferrin mechanism
+NULL,CSF Abeta42 main,Jansen 2022,GCST90129599,8074,8,+0.012,0.034,0.719,Null,-,-,-,Yes,Tau-specificity evidence
+NULL,CSF Abeta42 APOE4 non-carriers,Jansen 2022,GCST90134627,3201,8,+0.002,0.052,0.977,Null,-,-,-,Yes,Tau-specific per APOE4 genotype
+NULL,CSF Abeta42 APOE4 carriers,Jansen 2022,GCST90134628,3240,8,-0.002,0.051,0.967,Null,-,-,-,Yes,Tau-specific per APOE4 genotype
+NULL,CSF Abeta42 normal amyloid,Jansen 2022,GCST90134629,3182,8,+0.008,0.052,0.879,Null,-,-,-,Yes,-
+NULL,CSF Abeta42 abnormal amyloid,Jansen 2022,GCST90134626,3775,8,-0.009,0.055,0.875,Null,-,-,-,Yes,-
+NULL,AD diagnosis,Bellenguez 2022,ebi-a-GCST90027158,487511,8,+0.018,0.022,0.402,Null,-,-,-,Yes,Predicted null by upstream model
+NULL,PD diagnosis,Nalls 2019,ieu-b-7,482730,8,+0.050,0.035,0.156,Null,-,-,-,Yes,Predicted null by upstream model
+NULL,Multiple sclerosis,-,ukb-b-17670,462933,5,+0.0001,0.028,0.779,Null,-,-,-,Yes,Specificity evidence
+NULL,Stroke,-,ebi-a-GCST90038613,484598,8,-0.0002,0.0005,0.663,Null,-,-,-,Yes,Specificity evidence
+NULL,Depression,-,ebi-a-GCST90038650,484598,8,-0.0001,0.029,0.888,Null,-,-,-,Yes,Non-neurodegenerative specificity control
+CONTROL,Serum iron -> haemoglobin (+ve),Loh 2018,ebi-a-GCST90028995,572863,3,+0.704,0.193,2.56e-04,Expected positive,-,-,-,-,Pipeline validation; confirms instrument validity
+CONTROL,Serum iron -> height (-ve),Loh 2018,ebi-a-GCST90029008,673878,3,+0.031,0.023,0.191,Expected null,-,-,-,-,No systematic bias
