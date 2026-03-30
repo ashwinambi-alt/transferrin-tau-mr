@@ -1,0 +1,9 @@
+rsID,Chromosome,Position_hg19,Nearest_gene,Effect_allele,Other_allele,EAF,Beta_transferrin,SE,F_statistic,Steiger_direction,Pleiotropy_flag,Pleiotropy_pathway,Wald_ratio_tau,Wald_SE,Notes
+rs8177240,3,133477701,TF,G,T,0.338,0.4234,0.0107,1565.8,Forward,No,-,-0.0503,0.0165,"TF gene; strongest instrument; drives LOO significance (p=0.358 without)"
+rs1800562,6,26093141,HFE,A,G,0.083,-0.5496,0.0208,698.2,Forward,No,-,-0.0322,0.0253,HFE C282Y hemochromatosis variant; lowers transferrin protein
+rs1495741,8,18272881,NAT2,A,G,0.769,0.0825,0.0122,45.7,Forward,No,-,-0.0388,0.0945,N-acetyltransferase 2
+rs9990333,3,195827205,TFRC,T,C,0.465,-0.0670,0.0101,44.0,Forward,No,-,-0.0149,0.0970,Transferrin receptor gene; iron uptake pathway
+rs174577,11,61604814,FADS1/FADS2,A,C,0.338,0.0684,0.0107,40.9,Forward,Yes,FADS fatty acid,-0.0088,0.1023,"Fatty acid desaturase locus; known pleiotropic; excluded in 6-SNP sensitivity"
+rs744653,2,190378750,SLC40A1,T,C,0.856,0.0916,0.0144,40.5,Forward,No,-,+0.0044,0.1026,"Near ferroportin; iron export; discordant Wald direction (p=0.97)"
+rs7646473,3,133699499,TF,A,G,0.334,-0.0623,0.0107,33.9,Forward,No,-,+0.2183,0.1140,"~210kb downstream of TF; discordant Wald direction (p=0.055)"
+rs9268633,6,32406473,HLA-DRB1,G,A,0.816,0.0717,0.0128,31.4,Forward,Yes,HLA immune,-0.0432,0.1395,"HLA region; potential immune pleiotropy; excluded in 6-SNP sensitivity; Egger intercept p=0.202"
