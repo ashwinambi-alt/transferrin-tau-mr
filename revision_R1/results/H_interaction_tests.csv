@@ -1,0 +1,4 @@
+"contrast","b1","se1","b2","se2","diff","z_diff","p_diff","Q","p_Q","I2"
+"CSF p-tau: APOE4 non-carriers vs carriers",-0.116,0.0587,0.0155,0.0529,-0.132,-1.67,0.0952,2.78,0.0952,64.1
+"CSF Abeta42: APOE4 non-carriers vs carriers",0.00151,0.0516,-0.00209,0.0512,0.0036,0.0495,0.96,0.00245,0.96,0
+"CSF p-tau: normal vs abnormal amyloid",-0.0753,0.0568,-0.0181,0.0491,-0.0572,-0.762,0.446,0.581,0.446,0

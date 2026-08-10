@@ -1,0 +1,10 @@
+# Large GWAS data (accessed live via OpenGWAS; not versioned)
+*.tsv.gz
+*.vcf.gz
+*.RData
+*.rds
+# OS / editor
+.DS_Store
+Thumbs.db
+.Rhistory
+.Rproj.user/

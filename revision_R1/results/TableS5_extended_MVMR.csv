@@ -1,0 +1,13 @@
+Model,Instrument_set,Exposure,beta,SE,p,Conditional_F
+2-way MVMR-IVW,union transferrin + serum iron (n=10),Transferrin,-0.044,0.009,0.0014,278.2
+2-way MVMR-IVW,union transferrin + serum iron (n=10),Serum iron,-0.006,0.022,0.801,93.9
+2-way MVMR-Egger,union transferrin + serum iron (n=10),Intercept,0.004,0.004,0.244,NA
+2-way MVMR-Egger,union transferrin + serum iron (n=10),Transferrin (slope),-0.056,0.015,0.000165,NA
+2-way MVMR-Egger,union transferrin + serum iron (n=10),Serum iron (slope),0.002,0.025,0.926,NA
+3-way MVMR-IVW,transferrin + ferritin + TSAT,Transferrin,-0.046,0.017,0.014,22.7
+3-way MVMR-IVW,transferrin + ferritin + TSAT,Ferritin,-0.010,0.046,0.824,36.7
+3-way MVMR-IVW,transferrin + ferritin + TSAT,TSAT,-0.006,0.027,0.833,14.8
+4-way MVMR-IVW,transferrin + iron + ferritin + TSAT,Transferrin,-0.088,0.174,0.618,0.03
+4-way MVMR-IVW,transferrin + iron + ferritin + TSAT,Serum iron,0.103,0.422,0.809,0.03
+4-way MVMR-IVW,transferrin + iron + ferritin + TSAT,Ferritin,-0.013,0.048,0.791,0.38
+4-way MVMR-IVW,transferrin + iron + ferritin + TSAT,TSAT,-0.113,0.440,0.799,0.03

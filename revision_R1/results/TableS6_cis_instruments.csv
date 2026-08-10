@@ -1,0 +1,4 @@
+"SNP","pos_GRCh37","dist_from_TF_bp","beta_exposure","se_exposure","F_stat","beta_outcome","se_outcome","wald_beta","wald_se","wald_p","live_beta_exposure","live_effect_allele","source"
+"rs8177240",133477701,0,0.4234,0.0107,1566,-0.0213,0.007,-0.05031,0.01653,0.002343,0.3883,"G","primary(ieu-a-1052)"
+"rs3811658",133476852,0,0.3883,0.0109,1269,-0.0223,0.007,-0.05743,0.01803,0.001444,0.4234,"T","cis(ieu-a-1052)"
+"rs17376530",133555155,60767,-0.1881,0.0165,130,0.0161,0.0099,-0.08559,0.05263,0.1039,NA,NA,"cis(ieu-a-1052)"

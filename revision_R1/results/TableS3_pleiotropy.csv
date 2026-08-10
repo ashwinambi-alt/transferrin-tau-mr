@@ -1,0 +1,9 @@
+SNP,Nearest_gene,Total_GWAS_Catalog_hits,Iron_haematologic_hits,Non_iron_hits,Representative_non_iron_associations,Pleiotropy_concern
+rs8177240,TF,6,5,1,COL23A1 protein levels,Low
+rs9990333,TFRC (downstream),2,2,0,,Low
+rs744653,TFRC,2,2,0,,Low
+rs7646473,TF (5' region),0,0,0,no catalog entry,Low
+rs9268633,HLA-DRB1/DQA1,1,0,1,IFN-beta neutralising-antibody response (immune),Low
+rs1800562,HFE,183,127,56,LDL/total cholesterol; liver fibrosis and bilirubin; blood pressure,Medium
+rs174577,FADS1/FADS2,129,3,126,Fatty-acid ratios; phospholipid/lipid species,Medium
+rs1495741,NAT2,146,0,146,Triglycerides; total cholesterol; bladder cancer,Medium
