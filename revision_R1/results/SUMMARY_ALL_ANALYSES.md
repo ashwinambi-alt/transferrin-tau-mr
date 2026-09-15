@@ -1,5 +1,7 @@
 # Reviewer response — consolidated results
 
+> **Historical working summary (July–August 2026).** Where it differs from the revised manuscript, the manuscript, `../REVISION_NOTES.md` and the Table S3–S7 CSVs are canonical. For example, the leave-locus-out table below uses fixed-effect IVW, while the manuscript uses random effects.
+
 All 7 reviewer-requested analyses complete. Run date: 2026-07-01. Cached at
 `results/reviewer_response/`. Original manuscript primary IVW for reference:
 β = −0.039, SE = 0.013, p = 2.88×10⁻³, 8 SNPs.
@@ -42,9 +44,9 @@ Extracted **all** transferrin-associated SNPs at p<5×10⁻⁸ within ±500 kb o
 - **Cis-TF (2 SNPs): β = −0.060, SE = 0.017, p = 3.99×10⁻⁴**
 - SNPs: rs3811658 (chr3:133,476,852; F=1269) and rs17376530 (chr3:133,555,155; F=130)
 - rs3811658 sits 849 bp from rs8177240 and tags the same signal
-- **rs17376530 is a second independent TF-region variant NOT in the original 8-SNP panel** — represents new evidence
+- rs17376530 is a TF-region variant independent of rs8177240 (r² = 0.0013) and not in the original 8-SNP panel; it is directionally concordant but not individually significant (p = 0.10)
 
-**Punchline:** the two-instrument cis-only estimate is *stronger* than the full-panel estimate AND clears the Bonferroni threshold (p<0.00217). The reviewer's "single-variant" concern is neutralised because a second, biologically-clean cis-TF variant reproduces the effect.
+**Punchline:** the two-instrument cis-only estimate is stronger than the full-panel estimate and clears the Bonferroni threshold (p<0.00217). It rests principally on rs3811658, which tags the rs8177240 signal, so it is a transferrin-specific re-estimation rather than an independent replication.
 
 ## Analysis D — Colocalization at TF locus (coloc.abf)
 
@@ -63,9 +65,9 @@ Extracted **all** transferrin-associated SNPs at p<5×10⁻⁸ within ±500 kb o
 
 - **Conditional on signal in both traits: PP.H4 / (PP.H3 + PP.H4) = 96.3%** shared-variant probability
 - **Top SNP by PP.H4: rs8177240** (49% of PP.H4 mass)
-- The H4 / H1 ambiguity reflects tau GWAS underpower at this locus (min p in window = 0.001), NOT evidence against colocalization.
+- The H4 / H1 ambiguity reflects tau GWAS underpower at this locus (min p in window ≈ 1.4×10⁻³), NOT evidence against colocalization.
 
-**Punchline:** the reviewer's specific worry that rs8177240 might tag a *different* causal variant is directly refuted by PP.H3 ≈ 0.02. rs8177240 is the top posterior-supported shared variant.
+**Punchline:** the reviewer's specific worry that rs8177240 might tag a *different* causal variant has ≈2% posterior support (PP.H3 ≈ 0.02). rs8177240 is the top posterior-supported shared variant.
 
 ## Analysis E — Extended MVMR reporting (2-way)
 
@@ -77,13 +79,13 @@ Re-ran 2-exposure MVMR (transferrin + serum iron → total-tau) using the WSpill
   - Transferrin: **278.2**
   - Serum iron: **93.9** (both >> 10 — instruments are strong)
 - **MVMR IVW (t-dist inference, 8 df):**
-  - Transferrin: β = −0.044, SE = 0.009, **p = 0.001**
+  - Transferrin: β = −0.044, SE = 0.009, **p = 1.4×10⁻³** (t-based 95% CI −0.065 to −0.022)
   - Serum iron: β = −0.006, SE = 0.022, p = 0.80
 - **Q_A heterogeneity: Q = 6.28 on 7 df, p = 0.51** (no evidence of horizontal pleiotropy)
 - SNP-effect Pearson correlation transferrin ↔ iron: **r = −0.611** (moderate negative — biologically expected antagonism)
-- Sample overlap disclosure: transferrin and iron come from the same Benyamin 2014 cohort (n=23,986). Total-tau (Sarnowski 2022, n=14,721) is independent of Benyamin. MVMR is unbiased under complete exposure-exposure overlap when the outcome GWAS is independent.
+- Sample overlap disclosure: transferrin and iron come from the same Benyamin 2014 cohort (n=23,986). The exposure and outcome GWAS (Benyamin; Sarnowski 2022, n=14,721) share the Rotterdam Study, a partial exposure–outcome overlap disclosed in the manuscript Limitations. Between-exposure gencov=0 enters the conditional F and Q_A, not the MVMR-IVW point estimate, so the reported effect is unaffected.
 
-**Note on p-value:** the manuscript's p=2.29×10⁻⁵ came from `MendelianRandomization::mr_mvivw()` (z-approximation). The `MVMR::ivw_mvmr()` implementation uses the t-distribution with residual df, giving p=0.001. Point estimate and SE are identical; only the inference method differs. p=0.001 still clears the Bonferroni threshold (0.00217).
+**Note on p-value:** the original submission's p=2.29×10⁻⁵ came from `MendelianRandomization::mr_mvivw()` (z-approximation). The `MVMR::ivw_mvmr()` implementation uses the t-distribution with residual df, giving p=1.4×10⁻³. The point estimate is identical; the SE changes only slightly between packages (0.010 vs 0.009). Although p=1.4×10⁻³ is numerically below the Bonferroni threshold (0.00217), the MVMR re-estimates the same association conditional on serum iron, so the manuscript does not present it as clearing Bonferroni.
 
 ## Analysis F — 4-way MVMR sensitivity (adding ferritin + TSAT)
 
@@ -98,7 +100,7 @@ Reviewer explicitly asked for MVMR sensitivity with ferritin and transferrin sat
   - Ferritin: β = −0.010, p = 0.82 (null)
   - TSAT: β = −0.006, p = 0.83 (null)
 
-**Punchline:** transferrin's effect on tau survives conditioning on ferritin (iron *stores*) and TSAT (iron *distribution*). Neither ferritin nor TSAT shows any signal. Iron transport capacity — not iron burden and not iron distribution — is the biologically relevant variable.
+**Punchline:** the transferrin estimate is retained after conditioning on ferritin (iron *stores*) and TSAT (iron *distribution*), and neither shows any signal. Because ferritin and TSAT are downstream markers of iron status, the manuscript reports this 3-way model only as a descriptive over-adjustment check.
 
 ## Analysis G — GWAS Catalog pleiotropy lookup
 
@@ -117,7 +119,7 @@ Reviewer explicitly asked for MVMR sensitivity with ferritin and transferrin sat
 | rs1495741 | NAT2 | 146 | 0 | 146 mostly lipid | MEDIUM (expected) |
 | rs7646473 | TF 5' region | 0 | – | – | (no catalog entry) |
 
-**Punchline:** the TF locus itself is clean. The reviewer's pleiotropy concerns for HFE, FADS, and NAT2 are real — and directly addressed by Analysis B's leave-locus-out (excluding all four jointly still gives β = −0.043, p = 0.007).
+**Punchline:** the TF locus itself is clean. The reviewer's pleiotropy concerns for HFE, FADS, and NAT2 are real — and directly addressed by Analysis B's leave-locus-out (excluding all four jointly preserves β = −0.043; random-effects IVW p = 0.053, weighted median p = 0.005).
 
 ---
 
@@ -128,7 +130,7 @@ Reviewer explicitly asked for MVMR sensitivity with ferritin and transferrin sat
 ### H1. MVMR-Egger — directional-pleiotropy-robust MVMR
 
 - **Intercept:** 0.004 (SE 0.004), **p = 0.244** — no evidence of directional pleiotropy in MVMR
-- **Transferrin slope:** β = **−0.056**, SE = 0.015, **p = 1.65×10⁻⁴** — clears Bonferroni comfortably, LARGER than IVW
+- **Transferrin slope:** β = **−0.056**, SE = 0.015, **p = 1.65×10⁻⁴** (normal approximation) — a larger slope than IVW; not presented as clearing Bonferroni
 - Serum iron slope: β = 0.002, p = 0.93 (null)
 
 Pleiotropy-robust MVMR estimate that reviewer explicitly requested.
@@ -137,10 +139,10 @@ Pleiotropy-robust MVMR estimate that reviewer explicitly requested.
 
 `MVMR::qhet_mvmr()` errored on a missing `pcor` argument in the current build; used `MendelianRandomization::mr_mvivw(model = "random")` as fallback.
 
-- Transferrin: β = −0.044, SE = 0.010, **p = 2.29×10⁻⁵** — reproduces manuscript figure exactly
+- Transferrin: β = −0.044, SE = 0.010, **p = 2.29×10⁻⁵** — reproduces the original submission's z-based figure (superseded by the t-based 1.4×10⁻³)
 - Serum iron: p = 0.82
 
-Confirms manuscript's p = 2.29×10⁻⁵ used random-effects z-based inference.
+Confirms the original submission's p = 2.29×10⁻⁵ used random-effects z-based inference (now superseded by the t-based 1.4×10⁻³).
 
 ### H3. Per-SNP Q contributions (radial-MVMR-style outlier scan)
 
@@ -158,7 +160,7 @@ Threshold χ²(1, 0.95) = 3.84.
 | rs1495741 | <0.01 |
 | rs9268633 | <0.01 |
 
-rs7646473 has a positive Wald ratio (+0.218 per Analysis A) inconsistent with the direction of the other TF-region variants — likely local pleiotropy or LD noise. But its IVW weight is only 1.3%, and the cis-TF 3-SNP set (which includes it) still gives β = −0.044, p = 0.006 (Analysis B). Not the driver of anything.
+rs7646473 has a positive Wald ratio (+0.218 per Analysis A) inconsistent with the direction of the other TF-region variants — likely local pleiotropy or LD noise. But its IVW weight is only 1.3%, and the cis-TF 3-SNP set (which includes it) still gives β = −0.044 (Analysis B; fixed-effect p = 0.006, random-effects p = 0.101). Not the driver of anything.
 
 ### H4. Formal interaction / heterogeneity tests
 
@@ -182,12 +184,12 @@ The reviewer's three main technical concerns are now answered with new data:
 
 1. **"Close to single-variant / rs8177240-dependent."**
    - Analysis A confirms rs8177240 carries 63.5% of the weight. Concede.
-   - **Analysis C** shows a *second independent TF variant* (rs17376530) alone with rs3811658 gives β = −0.060, p = 3.99×10⁻⁴ — stronger than the full panel, and clears Bonferroni.
+   - **Analysis C**: the cis-only TF instrument (rs3811658, which tags rs8177240, plus rs17376530) gives β = −0.060, p = 3.99×10⁻⁴ — stronger than the full panel and clears Bonferroni, but rests principally on the rs8177240 signal.
    - **Analysis D** shows PP.H3 (different causal variants) ≈ 0.02: rs8177240 is not tagging some off-target signal.
 
 2. **"Horizontal pleiotropy at HLA/FADS/HFE/NAT2."**
    - Analysis G confirms the concern for HFE/FADS/NAT2 (not TF itself).
-   - **Analysis B** shows removing all four jointly leaves β = −0.043, p = 0.007 (weighted median p = 0.002).
+   - **Analysis B** shows removing all four jointly leaves β = −0.043 (random-effects IVW p = 0.053; weighted median p = 0.005).
 
 3. **"MVMR underreported / conclusions overinterpreted."**
    - **Analysis E** adds Sanderson-Windmeijer conditional F (278 / 94), Q_A heterogeneity (p = 0.51), sample-overlap disclosure, and SNP-effect correlation (r = −0.61).
@@ -197,8 +199,8 @@ The reviewer's three main technical concerns are now answered with new data:
 4. **"APOE4 non-carrier effect is p = 0.048 and fragile — a formal interaction test is needed."**
    - **Analysis H4** provides the requested formal interaction test: Cochran Q p = 0.095. Trending but not significant. Direction consistent with APOE4-modulated mechanism, but the subgroup difference is not statistically distinguishable at α = 0.05. The response should acknowledge this honestly rather than defend the current framing.
 
-The paper's central claim — that iron transport capacity, not iron burden, causally reduces tau — now has:
-- Cis-only replication with a novel independent variant (Analysis C)
+The paper's central claim — that iron transport capacity, not iron burden, is associated with lower tau — now has:
+- A stronger cis-only TF estimate that clears Bonferroni, resting principally on the rs8177240 signal (Analysis C)
 - Bayesian colocalization consistent with a shared causal variant (Analysis D)
 - Pleiotropy-robust leave-locus-out consistency (Analysis B)
 - Strong conditional instruments and null Q_A in the reviewer-requested MVMR reporting (Analysis E)
