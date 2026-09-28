@@ -1,3 +1,6 @@
+# SUPERSEDED for the accepted paper: this script's caption states that the
+# cis-only estimate "clears Bonferroni", which revision R2 withdrew. Use
+# revision_R2/scripts/figures/FIX_FIGS9_R2_caption.R to render Figure S9.
 # FIX_FIGS9_notation.R (2026-09-13): lines 20-61, 261-274 and 460-518 of R1_FIGURES.R,
 # extracted verbatim, then edited ONLY for label notation (see ### FIX comments).
 # Output goes to a staging directory (2nd argument), not the supplementary folder.

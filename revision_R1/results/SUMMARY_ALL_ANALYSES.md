@@ -184,7 +184,7 @@ The reviewer's three main technical concerns are now answered with new data:
 
 1. **"Close to single-variant / rs8177240-dependent."**
    - Analysis A confirms rs8177240 carries 63.5% of the weight. Concede.
-   - **Analysis C**: the cis-only TF instrument (rs3811658, which tags rs8177240, plus rs17376530) gives β = −0.060, p = 3.99×10⁻⁴ — stronger than the full panel and clears Bonferroni, but rests principally on the rs8177240 signal.
+   - **Analysis C**: the cis-only TF instrument (rs3811658, which tags rs8177240, plus rs17376530) gives β = −0.060, p = 3.99×10⁻⁴ — stronger than the full panel and below the Bonferroni threshold, but added post hoc at review and resting principally on the rs8177240 signal, so not presented as confirmatory.
    - **Analysis D** shows PP.H3 (different causal variants) ≈ 0.02: rs8177240 is not tagging some off-target signal.
 
 2. **"Horizontal pleiotropy at HLA/FADS/HFE/NAT2."**
@@ -200,7 +200,7 @@ The reviewer's three main technical concerns are now answered with new data:
    - **Analysis H4** provides the requested formal interaction test: Cochran Q p = 0.095. Trending but not significant. Direction consistent with APOE4-modulated mechanism, but the subgroup difference is not statistically distinguishable at α = 0.05. The response should acknowledge this honestly rather than defend the current framing.
 
 The paper's central claim — that iron transport capacity, not iron burden, is associated with lower tau — now has:
-- A stronger cis-only TF estimate that clears Bonferroni, resting principally on the rs8177240 signal (Analysis C)
+- A stronger cis-only TF estimate below the Bonferroni threshold, but not confirmatory: it rests principally on the rs8177240 signal, rs3811658 carrying 89.5% of the inverse-variance weight (Analysis C; see `revision_R2/`)
 - Bayesian colocalization equivocal (Analysis D): unconditional PP.H1 = 0.536 (transferrin only) exceeds PP.H4 = 0.447 (shared causal variant); PP.H3 = 0.017 argues against distinct variants. See `revision_R2/REVISION_NOTES_R2.md`.
 - Pleiotropy-robust leave-locus-out consistency (Analysis B)
 - Strong conditional instruments and null Q_A in the reviewer-requested MVMR reporting (Analysis E)
