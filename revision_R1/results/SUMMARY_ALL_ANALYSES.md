@@ -201,7 +201,7 @@ The reviewer's three main technical concerns are now answered with new data:
 
 The paper's central claim — that iron transport capacity, not iron burden, is associated with lower tau — now has:
 - A stronger cis-only TF estimate that clears Bonferroni, resting principally on the rs8177240 signal (Analysis C)
-- Bayesian colocalization consistent with a shared causal variant (Analysis D)
+- Bayesian colocalization equivocal (Analysis D): unconditional PP.H1 = 0.536 (transferrin only) exceeds PP.H4 = 0.447 (shared causal variant); PP.H3 = 0.017 argues against distinct variants. See `revision_R2/REVISION_NOTES_R2.md`.
 - Pleiotropy-robust leave-locus-out consistency (Analysis B)
 - Strong conditional instruments and null Q_A in the reviewer-requested MVMR reporting (Analysis E)
 - Robustness to ferritin and TSAT adjustment (Analysis F)

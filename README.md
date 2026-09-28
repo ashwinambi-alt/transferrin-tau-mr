@@ -13,7 +13,7 @@
 
 Two-sample Mendelian randomization study testing whether genetically predicted serum transferrin is associated with tau biomarkers in blood and cerebrospinal fluid (CSF), independent of serum iron. The findings are framed as **associational / hypothesis-generating**, not confirmatory causal claims.
 
-**Primary finding:** genetically predicted transferrin is inversely associated with circulating total-tau (IVW β = −0.039, SE = 0.013, p = 2.88×10⁻³, 8 SNPs); multivariable MR conditioning on serum iron does not attenuate the estimate (β = −0.044, SE = 0.009, **p = 1.4×10⁻³**, t-based; serum iron null, p = 0.80). A cis-restricted TF-locus analysis gives a stronger estimate (β = −0.060, p = 3.99×10⁻⁴) that rests principally on the rs8177240 signal (rs3811658 tags it), and colocalization supports a shared causal variant (conditional PP.H4/(PP.H3+PP.H4) = 96.3%). The univariable result does not survive Bonferroni correction across the exploratory outcome panel.
+**Primary finding:** genetically predicted transferrin is inversely associated with circulating total-tau (IVW β = −0.039, SE = 0.013, p = 2.88×10⁻³, 8 SNPs); multivariable MR conditioning on serum iron does not attenuate the estimate (β = −0.044, SE = 0.009, **p = 1.4×10⁻³**, t-based; serum iron null, p = 0.80). A cis-restricted TF-locus analysis gives a stronger estimate (β = −0.060, p = 3.99×10⁻⁴), but it does not independently confirm the rs8177240 signal: rs3811658 tags that signal and carries 89.5% of the inverse-variance weight, while rs17376530 — the only independent TF-region variant — is directionally concordant but not individually significant (p = 0.10). Colocalization is equivocal: the **unconditional** posteriors are 0.536 for a transferrin-only signal and 0.447 for a shared causal variant (PP.H3, distinct variants, 0.017). The univariable result does not survive Bonferroni correction across the exploratory outcome panel.
 
 ---
 
@@ -30,6 +30,8 @@ Two-sample Mendelian randomization study testing whether genetically predicted s
 
 ### Major revision (`revision_R1/`)
 Reviewer-response analyses added for the JAD revision: cis-restricted TF-locus MR, Bayesian colocalization, leave-locus-out (random-effects IVW), per-instrument GWAS Catalog pleiotropy audit, full MVMR reporting (Sanderson–Windmeijer conditional F, Q_A, MVMR-Egger, 3-/4-way models), and transferrin-specific positive/negative controls. `revision_R1/scripts/figures/` holds the scripts that render the final Figures 1–3 and S1–S10. See `revision_R1/REVISION_NOTES.md` for the file index, the figure-to-script map and the corrected MVMR p-value note (t-based 1.4×10⁻³ supersedes the earlier z-approximation 2.29×10⁻⁵).
+
+`revision_R2/` holds the second-round analyses added before acceptance: unconditional colocalization posteriors with prior sensitivity, per-variant cis IVW weights, and an MVMR between-exposure covariance sensitivity analysis. See `revision_R2/REVISION_NOTES_R2.md`.
 
 ---
 

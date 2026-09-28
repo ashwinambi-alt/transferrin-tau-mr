@@ -9,9 +9,9 @@ The original submission reported MVMR transferrin **p = 2.29×10⁻⁵**, from a
 - Univariable IVW: β = −0.039, SE = 0.013, p = 2.88×10⁻³ (8 SNPs) — does not survive Bonferroni (0.00217).
 - MVMR (2-way, adj. serum iron): transferrin β = −0.044, SE = 0.009, t-based 95% CI −0.065 to −0.022, p = 1.4×10⁻³; serum iron null, p = 0.80 (95% CI −0.056 to +0.045). Conditional F 278.2 / 93.9; Q_A p = 0.51; r = −0.611. Not presented as clearing Bonferroni: it re-estimates the same association conditional on serum iron.
 - MVMR-Egger: intercept p = 0.24; transferrin slope β = −0.056, p = 1.65×10⁻⁴ (normal approximation).
-- Cis-only TF (rs3811658 + rs17376530): β = −0.060, SE = 0.017, p = 3.99×10⁻⁴, clearing Bonferroni. LD: rs8177240↔rs3811658 r² = 0.974; rs17376530↔rs8177240 r² = 0.0013. The estimate rests principally on rs3811658, which tags the rs8177240 signal; rs17376530 is directionally concordant but not individually significant (p = 0.10). It is a transferrin-specific re-estimation, not an independent replication.
+- Cis-only TF (rs3811658 + rs17376530): β = −0.060, SE = 0.017, p = 3.99×10⁻⁴. This falls below the Bonferroni threshold but is not presented as confirmatory: the analysis was added post hoc at review and re-estimates the same TF-locus signal (rs3811658 carries 89.5% of the weight; see `revision_R2/`). LD: rs8177240↔rs3811658 r² = 0.974; rs17376530↔rs8177240 r² = 0.0013. The estimate rests principally on rs3811658, which tags the rs8177240 signal; rs17376530 is directionally concordant but not individually significant (p = 0.10). It is a transferrin-specific re-estimation, not an independent replication.
 - rs8177240: 63.5% of IVW weight; Wald β = −0.050, SE = 0.017, p = 2.34×10⁻³.
-- Colocalization: PP.H1 = 0.54, PP.H3 = 0.02, PP.H4 = 0.45; conditional PP.H4/(PP.H3+PP.H4) = 96.3%.
+- Colocalization (unconditional): PP.H0 = 0.000, PP.H1 = 0.536, PP.H2 = 0.000, PP.H3 = 0.017, PP.H4 = 0.447. The conditional PP.H4/(PP.H3+PP.H4) = 96.3% is reported only because the residual mass sits on PP.H1, not on PP.H3; it is not the primary result. Prior sensitivity in `revision_R2/`.
 - Leave-locus-out (random-effects IVW): joint HLA+FADS+HFE+NAT2 exclusion β = −0.043, WM p = 0.005, RE-IVW p = 0.053; excl. rs8177240 alone β = −0.020, p = 0.358.
 - Transferrin controls: TSAT (positive; shares Benyamin cohort) β = −0.481, p = 5.18×10⁻⁴; height p = 0.31, education p = 0.22 (null); serum iron IVW p = 0.52, WM +0.16 p < 10⁻⁴.
 - APOE4 × transferrin interaction p = 0.095 (ns); CSF Aβ42 interaction p = 0.96.
@@ -37,7 +37,7 @@ The original submission reported MVMR transferrin **p = 2.29×10⁻⁵**, from a
 
 The figure scripts are committed exactly as run. They expect a project directory in which the files in `revision_R1/results/` sit under `results/reviewer_response/`, and they take that directory (or, for Fig 1/3/S4, an output directory) as their first argument. `FIX_FIGS10_notation.R` hard-codes the author's local project path and R library path in lines 12–15. Edit those lines before running it elsewhere.
 
-Scripts take `PROJECT_DIR` as the first argument. Sample-overlap note: the between-exposure genetic covariance is set to zero (enters conditional F and Q_A, not the IVW point estimate); exposure–outcome overlap (Benyamin/Sarnowski share the Rotterdam Study) is disclosed in the manuscript Limitations.
+Scripts take `PROJECT_DIR` as the first argument. Sample-overlap note: the between-exposure genetic covariance is set to zero (it enters conditional F and Q_A but not the MVMR-IVW estimates, which `MVMR::ivw_mvmr` obtains from a weighted regression that does not use the term; sensitivity across rho in `revision_R2/`); exposure–outcome overlap (Benyamin/Sarnowski share the Rotterdam Study) is disclosed in the manuscript Limitations.
 
 ## Final-round corrections (September 2026)
 - **MVMR confidence intervals are t-based**, matching their t-based p-values: 2-way models use 8 residual df, and the 3-way model uses 28 df (31 SNPs − 3). This applies to Fig 3, Fig S7 and Table S2. Univariable IVW, weighted-median and Wald intervals stay at β ± 1.96·SE, because TwoSampleMR computes those p-values with the normal distribution.

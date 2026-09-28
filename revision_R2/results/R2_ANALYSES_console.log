@@ -1,0 +1,532 @@
+Random seed set to 20261019 (no stochastic step in this script)
+
+
+==============================================================================
+ENVIRONMENT
+==============================================================================
+R version 4.6.1 (2026-06-24 ucrt) 
+  coloc                    installed 5.2.3      manuscript claims 5.2.3      MATCH
+  MVMR                     installed 0.4.6      manuscript claims 0.4.6      MATCH
+  TwoSampleMR              installed 0.7.9      manuscript claims 0.7.9      MATCH
+  MendelianRandomization   installed 0.10.0     manuscript claims 0.10.0     MATCH
+
+==============================================================================
+ANALYSIS A -- COLOCALIZATION
+==============================================================================
+  INPUT  md5 e715970704d2c671cabf76d4d345e8a0  D_coloc_TF_snp_posteriors.csv
+  INPUT  md5 7959ac00dbbbccba6acb7d260a279cf8  D_coloc_TF_summary.csv
+  INPUT  md5 a170021ec19ad2f8e7c044d27f55359b  P2_ld_matrix.csv
+
+Saved coloc output: 696 variants, columns: snp, position, V.df1, z.df1, r.df1, lABF.df1, V.df2, z.df2, r.df2, lABF.df2, internal.sum.lABF, SNP.PP.H4
+
+NOTE: the R1 script (R1_D_coloc_TF.R) did not save the raw regional pulls,
+and the OpenGWAS token is currently invalid (HTTP 401). All quantities below
+are recomputed from the saved per-SNP approximate Bayes factors, which is
+exact: coloc's posteriors are a deterministic function of lABF and the priors.
+
+==============================================================================
+A1  Unconditional posteriors, default priors (p1=p2=1e-4, p12=1e-5)
+==============================================================================
+PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf 
+   0.0000    0.5360    0.0000    0.0171    0.4470 
+[1] "PP abf for shared variant: 44.7%"
+
+Recomputed from saved lABF:
+PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf 
+    0.000     0.536     0.000     0.017     0.447 
+
+Sum of posteriors = 1.000000
+
+On-disk R1 summary for comparison:
+  window_kb n_common nsnps PP.H0.abf PP.H1.abf PP.H2.abf  PP.H3.abf PP.H4.abf
+1       500      696   696         0 0.5362016         0 0.01713518 0.4466632
+
+Max abs difference vs R1 on-disk values: 5.090e-14  -> EXACT REPRODUCTION
+
+PP.H0 = 0.000000 and PP.H2 = 0.000000 : the manuscript's three reported
+posteriors summing to 1.000 is CONFIRMED, not a rounding artefact.
+
+Conditional quantity PP.H4/(PP.H3+PP.H4) = 0.9631  (manuscript: 96.3%)
+
+==============================================================================
+A2  coloc::sensitivity(res, rule = 'H4 > 0.5')
+==============================================================================
+Results fail decision rule H4 > 0.5
+null device 
+          1 
+
+  WROTE  md5 c4db11de7eeae6639924748e3bc78e6d  FigS11_coloc_sensitivity.pdf
+  vector PDF, 132162 bytes
+
+Rule 'H4 > 0.5' is satisfied for p12 in [1.292e-05, 1.000e-04]
+Default prior p12 = 1e-05 gives PP.H4 = 0.447 -> rule FAILS at the default.
+  WROTE  md5 d8e404ce7f1f2eb2e8b86157f0bdaaf9  coloc_sensitivity_curve.csv  (100 rows x 7 cols re-read from disk)
+    first: "p12","PP.H0.abf","PP.H1.abf","PP.H2.abf","PP.H3.abf","PP.H4.abf","pass"
+    last:  1e-04,0,0.10681372569374,0,0.0034134040214232,0.889772870284837,TRUE
+
+==============================================================================
+A3  Explicit prior grid
+==============================================================================
+PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf 
+  0.00000   0.96100   0.00000   0.03070   0.00801 
+[1] "PP abf for shared variant: 0.801%"
+PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf 
+   0.0000    0.8970    0.0000    0.0287    0.0747 
+[1] "PP abf for shared variant: 7.47%"
+PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf 
+   0.0000    0.6900    0.0000    0.0221    0.2880 
+[1] "PP abf for shared variant: 28.8%"
+PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf 
+   0.0000    0.5360    0.0000    0.0171    0.4470 
+[1] "PP abf for shared variant: 44.7%"
+PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf 
+  0.00000   0.19200   0.00000   0.00615   0.80100 
+[1] "PP abf for shared variant: 80.1%"
+PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf 
+  0.00000   0.10700   0.00000   0.00341   0.89000 
+[1] "PP abf for shared variant: 89%"
+PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf 
+   0.0000    0.5360    0.0000    0.0171    0.4470 
+[1] "PP abf for shared variant: 44.7%"
+PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf 
+ 0.000000  0.107000  0.000000  0.000342  0.893000 
+[1] "PP abf for shared variant: 89.3%"
+  axis    p1    p2   p12 is_default PP.H0 PP.H1 PP.H2 PP.H3 PP.H4 PP.H4_cond
+   p12 1e-04 1e-04 1e-07      FALSE     0 0.961     0 0.031 0.008      0.207
+   p12 1e-04 1e-04 1e-06      FALSE     0 0.897     0 0.029 0.075      0.723
+   p12 1e-04 1e-04 5e-06      FALSE     0 0.690     0 0.022 0.288      0.929
+   p12 1e-04 1e-04 1e-05       TRUE     0 0.536     0 0.017 0.447      0.963
+   p12 1e-04 1e-04 5e-05      FALSE     0 0.192     0 0.006 0.801      0.992
+   p12 1e-04 1e-04 1e-04      FALSE     0 0.107     0 0.003 0.890      0.996
+ p1=p2 1e-04 1e-04 1e-05       TRUE     0 0.536     0 0.017 0.447      0.963
+ p1=p2 1e-05 1e-05 1e-05      FALSE     0 0.107     0 0.000 0.893      1.000
+ H4_exceeds_H1 p12_ge_min_p1p2
+         FALSE           FALSE
+         FALSE           FALSE
+         FALSE           FALSE
+         FALSE           FALSE
+          TRUE           FALSE
+          TRUE            TRUE
+         FALSE           FALSE
+          TRUE            TRUE
+
+NOTE: rows flagged p12_ge_min_p1p2 have p12 at or above p1, i.e. at least half
+of transferrin-associated loci are assumed a priori to be causal for tau as
+well. These are reported for completeness but are not defensible priors.
+
+--- A3 interpretive question ---
+Is there any prior in this grid under which PP.H4 exceeds PP.H1?
+ANSWER: Yes, but only under priors more permissive than the default.
+        Along the p12 axis (p1=p2=1e-04 fixed), PP.H4 first exceeds PP.H1 at
+        p12 = 5e-05, i.e. 5x the default; at the default p12 = 1e-05,
+        PP.H1 = 0.536 still exceeds PP.H4 = 0.447.
+        Along the p1=p2 axis (p12=1e-05 fixed), lowering p1=p2 to 1e-05 also
+        flips the ordering (PP.H4 = 0.893), but that sets p12 equal to p1.
+        Every cell in which PP.H4 exceeds PP.H1 has p12 >= 1e-05.
+  WROTE  md5 7c30a1abee5719a3c6675c3b84bc5a9f  coloc_prior_grid.csv  (8 rows x 13 cols re-read from disk)
+    first: "axis","p1","p2","p12","is_default","PP.H0","PP.H1","PP.H2","PP.H3","PP.H4","PP.H4_cond","H4_exceeds_H1","p12_ge_min_p1p2"
+    last:  "p1=p2",1e-05,1e-05,1e-05,FALSE,0,0.107142875423393,0,0.000342392252926059,0.892514732323669,0.999616520668871,TRUE,TRUE
+
+==============================================================================
+A4  Regional detail
+==============================================================================
+
+Transferrin lead : rs8177240 at 133477701, z = 39.57, p = 1e-341.7
+Total-tau   lead : rs3811658 at 133476852, z = -3.19, p = 1.444e-03
+Same variant?    : NO
+  distance apart : 849 bp
+  LD r^2         : 0.9738  (from P2_ld_matrix.csv, r = 0.986809)
+
+Minimum p in window, tau GWAS: 1.444e-03 at rs3811658  (manuscript states 1.4e-03)
+Minimum p in window, transferrin GWAS: 1e-341.7 at rs8177240
+  (11 transferrin variants have |z| large enough that p underflows to 0
+   in double precision; ranking is done on the log scale to avoid ties.)
+
+Where rs8177240 ranks in the tau GWAS: 3 of 696 (p = 2.343e-03)
+
+Top 5 variants by SNP.PP.H4:
+       snp  position    SNP.PP.H4
+ rs8177240 133477701 4.794145e-01
+ rs8177272 133482870 3.043902e-01
+ rs8177252 133480174 2.159777e-01
+ rs1525892 133484712 1.359005e-04
+ rs3811647 133484029 8.173062e-05
+                                                       item
+                                            Window (GRCh37)
+                      Window half-width around TF gene body
+ Variants in window, transferrin GWAS, before harmonisation
+   Variants in window, total-tau GWAS, before harmonisation
+    Variants shared and analysed after harmonisation and QC
+                             Lead variant, transferrin GWAS
+                           Lead variant p, transferrin GWAS
+                               Lead variant, total-tau GWAS
+                             Lead variant p, total-tau GWAS
+                                   Lead variants identical?
+                        Distance between lead variants (bp)
+                               LD r^2 between lead variants
+                        Minimum p in window, total-tau GWAS
+                                 Top 1 variant by SNP.PP.H4
+                                 Top 2 variant by SNP.PP.H4
+                                 Top 3 variant by SNP.PP.H4
+                                 Top 4 variant by SNP.PP.H4
+                                 Top 5 variant by SNP.PP.H4
+                                                                           value
+                                                    chr3:132,964,073-133,994,388
+                                                                          500 kb
+ not recoverable (raw pull not saved by R1_D_coloc_TF.R; OpenGWAS token invalid)
+ not recoverable (raw pull not saved by R1_D_coloc_TF.R; OpenGWAS token invalid)
+                                                                             696
+                                                                       rs8177240
+                                                                        1e-341.7
+                                                                       rs3811658
+                                                                       1.444e-03
+                                                                              no
+                                                                             849
+                                                                          0.9738
+                                                           1.444e-03 (rs3811658)
+                                                              rs8177240 (0.4794)
+                                                              rs8177272 (0.3044)
+                                                              rs8177252 (0.2160)
+                                                              rs1525892 (0.0001)
+                                                              rs3811647 (0.0001)
+  WROTE  md5 afb9ad5ef084d826f2e4c5e77bcc8957  coloc_regional_detail.csv  (18 rows x 2 cols re-read from disk)
+    first: "item","value"
+    last:  "Top 5 variant by SNP.PP.H4","rs3811647 (0.0001)"
+
+==============================================================================
+A5  Draft Supplementary Table S8
+==============================================================================
+                                   section
+ Unconditional posteriors (default priors)
+ Unconditional posteriors (default priors)
+ Unconditional posteriors (default priors)
+ Unconditional posteriors (default priors)
+ Unconditional posteriors (default priors)
+ Unconditional posteriors (default priors)
+                         Prior sensitivity
+                         Prior sensitivity
+                         Prior sensitivity
+                         Prior sensitivity
+                         Prior sensitivity
+                         Prior sensitivity
+                         Prior sensitivity
+                         Prior sensitivity
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                           Regional detail
+                                                   quantity
+                                                  PP.H0.abf
+                                                  PP.H1.abf
+                                                  PP.H2.abf
+                                                  PP.H3.abf
+                                                  PP.H4.abf
+                          PP.H4/(PP.H3+PP.H4) [conditional]
+                                    p12=1e-07 (p1=p2=1e-04)
+                                    p12=1e-06 (p1=p2=1e-04)
+                                    p12=5e-06 (p1=p2=1e-04)
+                                    p12=1e-05 (p1=p2=1e-04)
+                                    p12=5e-05 (p1=p2=1e-04)
+                                    p12=1e-04 (p1=p2=1e-04)
+                                    p12=1e-05 (p1=p2=1e-04)
+                                    p12=1e-05 (p1=p2=1e-05)
+                                            Window (GRCh37)
+                      Window half-width around TF gene body
+ Variants in window, transferrin GWAS, before harmonisation
+   Variants in window, total-tau GWAS, before harmonisation
+    Variants shared and analysed after harmonisation and QC
+                             Lead variant, transferrin GWAS
+                           Lead variant p, transferrin GWAS
+                               Lead variant, total-tau GWAS
+                             Lead variant p, total-tau GWAS
+                                   Lead variants identical?
+                        Distance between lead variants (bp)
+                               LD r^2 between lead variants
+                        Minimum p in window, total-tau GWAS
+                                 Top 1 variant by SNP.PP.H4
+                                 Top 2 variant by SNP.PP.H4
+                                 Top 3 variant by SNP.PP.H4
+                                 Top 4 variant by SNP.PP.H4
+                                 Top 5 variant by SNP.PP.H4
+                                                                           value
+                                                                           0.000
+                                                                           0.536
+                                                                           0.000
+                                                                           0.017
+                                                                           0.447
+                                                                           0.963
+                        H0=0.000 H1=0.961 H2=0.000 H3=0.031 H4=0.008; cond=0.207
+                        H0=0.000 H1=0.897 H2=0.000 H3=0.029 H4=0.075; cond=0.723
+                        H0=0.000 H1=0.690 H2=0.000 H3=0.022 H4=0.288; cond=0.929
+                        H0=0.000 H1=0.536 H2=0.000 H3=0.017 H4=0.447; cond=0.963
+                        H0=0.000 H1=0.192 H2=0.000 H3=0.006 H4=0.801; cond=0.992
+                        H0=0.000 H1=0.107 H2=0.000 H3=0.003 H4=0.890; cond=0.996
+                        H0=0.000 H1=0.536 H2=0.000 H3=0.017 H4=0.447; cond=0.963
+                        H0=0.000 H1=0.107 H2=0.000 H3=0.000 H4=0.893; cond=1.000
+                                                    chr3:132,964,073-133,994,388
+                                                                          500 kb
+ not recoverable (raw pull not saved by R1_D_coloc_TF.R; OpenGWAS token invalid)
+ not recoverable (raw pull not saved by R1_D_coloc_TF.R; OpenGWAS token invalid)
+                                                                             696
+                                                                       rs8177240
+                                                                        1e-341.7
+                                                                       rs3811658
+                                                                       1.444e-03
+                                                                              no
+                                                                             849
+                                                                          0.9738
+                                                           1.444e-03 (rs3811658)
+                                                              rs8177240 (0.4794)
+                                                              rs8177272 (0.3044)
+                                                              rs8177252 (0.2160)
+                                                              rs1525892 (0.0001)
+                                                              rs3811647 (0.0001)
+  WROTE  md5 fb2c4aaf6170c54a667b6bad934762ae  TableS8_colocalization.csv  (32 rows x 3 cols re-read from disk)
+    first: "section","quantity","value"
+    last:  "Regional detail","Top 5 variant by SNP.PP.H4","rs3811647 (0.0001)"
+
+==============================================================================
+ANALYSIS B -- CIS INSTRUMENTS: WALD RATIOS AND IVW WEIGHTS
+==============================================================================
+  INPUT  md5 2b80b4dfdf8cf0208e3a5eab94805b76  TableS6_cis_instruments.csv
+  INPUT  md5 d3c170ff6d4d732a8f061ad38372dac9  C_cis_TF_dat_500kb.csv
+
+Table S6 as published (Wald ratios stored to 5 dp):
+        SNP wald_beta wald_se   wald_p F_stat              source
+  rs8177240  -0.05031 0.01653 0.002343   1566 primary(ieu-a-1052)
+  rs3811658  -0.05743 0.01803 0.001444   1269     cis(ieu-a-1052)
+ rs17376530  -0.08559 0.05263 0.103900    130     cis(ieu-a-1052)
+
+Harmonized cis data (the actual pipeline input):
+        SNP beta.exposure se.exposure beta.outcome se.outcome
+  rs3811658        0.3883      0.0109      -0.0223     0.0070
+ rs17376530       -0.1881      0.0165       0.0161     0.0099
+
+Wald ratios at full precision:
+        SNP   wald_beta    wald_se tableS6_beta tableS6_se
+  rs3811658 -0.05742982 0.01802730     -0.05743    0.01803
+ rs17376530 -0.08559277 0.05263158     -0.08559    0.05263
+
+B1 -- inverse-variance weight decomposition:
+        SNP raw_weight ivw_weight_pct
+  rs3811658    3077.08           89.5
+ rs17376530     361.00           10.5
+
+B4 -- reproduction of the published cis-only IVW estimate:
+  hand-computed (fixed-effect)      : b = -0.0604  se = 0.0171  p = 3.9892e-04
+  TwoSampleMR::mr_ivw (as published) : b = -0.0604  se = 0.0171  p = 3.9892e-04
+  published in C_cis_TF_summary.txt  : b = -0.0604 se = 0.0171 p = 3.989e-04
+  mr_ivw reproduces published: b MATCH, se MATCH, p MATCH
+  NOTE: computing the same quantity from the 5-dp rounded Wald columns of
+  Table S6 instead gives p = 3.995e-04, which disagrees with the published
+  value in the 4th significant figure. The harmonized data above is the
+  correct source; the rounded table must not be used to recompute anything.
+
+B3 -- rs17376530 alone (the only variant independent of rs8177240):
+  beta = -0.0856, SE = 0.0526, 95% CI -0.189 to 0.018, p = 0.1039
+  r^2 with rs8177240 = 0.0013
+        SNP wald_beta wald_se   wald_p F_stat ivw_weight_pct r2_with_rs8177240
+  rs8177240  -0.05031 0.01653 0.002343   1566             NA            1.0000
+  rs3811658  -0.05743 0.01803 0.001444   1269           89.5            0.9738
+ rs17376530  -0.08559 0.05263 0.103900    130           10.5            0.0013
+                              in_cis_instrument_set
+ no - primary-panel variant, shown for context only
+                                                yes
+                                                yes
+  WROTE  md5 4fb5a2116265d969280d295bd698c799  TableS6_with_weights.csv  (3 rows x 17 cols re-read from disk)
+    first: "SNP","pos_GRCh37","dist_from_TF_bp","beta_exposure","se_exposure","F_stat","beta_outcome","se_outcome","wald_beta","wald_se","wald_p","live_beta_exposure","live_effect_allele","source","ivw_weight_pct","in_cis_instrument_set","r2_with_rs8177240"
+    last:  "rs17376530",133555155,60767,-0.1881,0.0165,130,0.0161,0.0099,-0.08559,0.05263,0.1039,NA,NA,"cis(ieu-a-1052)",10.5,"yes",0.0013
+
+==============================================================================
+ANALYSIS C -- MVMR BETWEEN-EXPOSURE COVARIANCE SENSITIVITY
+==============================================================================
+  INPUT  md5 5d9209190e92d5bdf8d32b33eecc8d36  E_MVMR_extended_snps.csv
+
+10 SNPs, columns: SNP, beta_tf, se_tf, beta_fe, se_fe, beta_tau, se_tau
+
+--- rho = 0 reproduction check against the published values ---
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  278.1997  93.87815
+Q-Statistic for instrument validity:
+6.279806 on 7 DF , p-value: 0.5074841
+  cond-F transferrin = 278.20  (published 278.20)  MATCH
+  cond-F serum iron  = 93.88  (published  93.88)  MATCH
+  Q_A = 6.2798 on 7 df, p = 0.5075  (published Q=6.28, p=5.075e-01)
+  SNP-effect correlation r = -0.611  (published -0.611)
+
+C1 -- estimating the covariance directly:
+  MVMR::phenocov_mvmr(pcor, seBXGs) requires the phenotypic correlation
+  between serum transferrin and serum iron in the Benyamin 2014 sample, and
+  builds cov(bx1j, bx2j) = rho * se1j * se2j.
+  A sample-specific value was not located. Benyamin 2014 is a meta-analysis
+  across 11 discovery cohorts, so a single pooled transferrin-serum-iron
+  phenotypic correlation is not a natural output of its design: the quantity
+  differs by contributing cohort and the GWAS used here is a subset (n=23,986).
+  No value is therefore adopted. Per the reviewer's own stated alternative
+  ('or provide a sensitivity analysis across plausible covariance values'),
+  the C2 grid is reported instead. Because the conclusion is unchanged across
+  the entire grid, it does not depend on which value is correct -- which is a
+  stronger answer than committing to one assumed number.
+
+C2 -- sensitivity grid over the assumed phenotypic correlation rho:
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  1262.778  142.2565
+Q-Statistic for instrument validity:
+6.285301 on 7 DF , p-value: 0.5068591
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  669.9852  126.0205
+Q-Statistic for instrument validity:
+6.283926 on 7 DF , p-value: 0.5070154
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  455.9488  113.1112
+Q-Statistic for instrument validity:
+6.282552 on 7 DF , p-value: 0.5071717
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  345.5562  102.6011
+Q-Statistic for instrument validity:
+6.281179 on 7 DF , p-value: 0.5073279
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  278.1997  93.87815
+Q-Statistic for instrument validity:
+6.279806 on 7 DF , p-value: 0.5074841
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  232.8183  86.52226
+Q-Statistic for instrument validity:
+6.278433 on 7 DF , p-value: 0.5076403
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  200.1661   80.2354
+Q-Statistic for instrument validity:
+6.277062 on 7 DF , p-value: 0.5077964
+  rho is_current condF_transferrin condF_serum_iron    Q_A Q_A_df  Q_A_p
+ -0.8      FALSE           1262.78           142.26 6.2853      7 0.5069
+ -0.6      FALSE            669.99           126.02 6.2839      7 0.5070
+ -0.4      FALSE            455.95           113.11 6.2826      7 0.5072
+ -0.2      FALSE            345.56           102.60 6.2812      7 0.5073
+  0.0       TRUE            278.20            93.88 6.2798      7 0.5075
+  0.2      FALSE            232.82            86.52 6.2784      7 0.5076
+  0.4      FALSE            200.17            80.24 6.2771      7 0.5078
+ beta_transferrin se_transferrin p_transferrin beta_serum_iron se_serum_iron
+      -0.04365388    0.009153105    0.00140988    -0.005685001    0.02176684
+      -0.04365388    0.009153105    0.00140988    -0.005685001    0.02176684
+      -0.04365388    0.009153105    0.00140988    -0.005685001    0.02176684
+      -0.04365388    0.009153105    0.00140988    -0.005685001    0.02176684
+      -0.04365388    0.009153105    0.00140988    -0.005685001    0.02176684
+      -0.04365388    0.009153105    0.00140988    -0.005685001    0.02176684
+      -0.04365388    0.009153105    0.00140988    -0.005685001    0.02176684
+ p_serum_iron
+     0.800554
+     0.800554
+     0.800554
+     0.800554
+     0.800554
+     0.800554
+     0.800554
+  WROTE  md5 0fcd915e757e71891e33bba5f05f7d6d  mvmr_covariance_sensitivity.csv  (7 rows x 13 cols re-read from disk)
+    first: "rho","is_current","condF_transferrin","condF_serum_iron","Q_A","Q_A_df","Q_A_p","beta_transferrin","se_transferrin","p_transferrin","beta_serum_iron","se_serum_iron","p_serum_iron"
+    last:  0.4,FALSE,200.17,80.24,6.2771,7,0.5078,-0.043653882,0.0091531048,0.00140988,-0.005685001,0.021766842,0.800554
+
+--- C3 interpretive questions ---
+1. Does conditional F drop below 10 anywhere in the plausible range?
+   ANSWER: No -- the minimum across the grid is 80.24 (serum iron at rho = +0.4),
+   more than 8-fold above the conventional threshold of 10.
+2. Does Q_A become significant (p < 0.05) anywhere in the plausible range?
+   ANSWER: No -- Q_A ranges 6.277 to 6.285 on 7 df (p = 0.507 to 0.508), null throughout.
+3. Do the MVMR-IVW point estimates move at all?
+   ANSWER: No -- identical to 8 significant figures at every rho (confirmed).
+   This is invariance by construction, not an empirical finding: MVMR 0.4.6's
+   ivw_mvmr() accepts gencov but never uses it -- it warns when gencov == 0 and
+   then fits lm(betaYG ~ -1 + betaX1 + betaX2, weights = 1/seBetaYG^2).
+   gencov enters only strength_mvmr() and pleiotropy_mvmr().
+
+   Direction note: the biologically expected sign of rho is negative
+   (transferrin rises in iron deficiency). Negative rho RAISES conditional F
+   (669.99 / 126.02 at rho = -0.6 vs 278.20 / 93.88 at rho = 0), so setting the
+   covariance to zero was the conservative choice for instrument strength.
+
+==============================================================================
+OUTPUT MANIFEST
+==============================================================================
+  7c30a1abee5719a3c6675c3b84bc5a9f      1084 bytes  coloc_prior_grid.csv
+  afb9ad5ef084d826f2e4c5e77bcc8957      1087 bytes  coloc_regional_detail.csv
+  d8e404ce7f1f2eb2e8b86157f0bdaaf9      8786 bytes  coloc_sensitivity_curve.csv
+  c4db11de7eeae6639924748e3bc78e6d    132162 bytes  FigS11_coloc_sensitivity.pdf
+  0fcd915e757e71891e33bba5f05f7d6d       963 bytes  mvmr_covariance_sensitivity.csv
+  6422709b774e81ec7d9a6f4650bb9cbe     27340 bytes  R2_ANALYSES_console.log
+  4fb5a2116265d969280d295bd698c799       683 bytes  TableS6_with_weights.csv
+  fb2c4aaf6170c54a667b6bad934762ae      2687 bytes  TableS8_colocalization.csv
+
+==============================================================================
+sessionInfo()
+==============================================================================
+R version 4.6.1 (2026-06-24 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
+
+Matrix products: default
+  LAPACK version 3.12.1
+
+locale:
+[1] LC_COLLATE=English_United States.utf8 
+[2] LC_CTYPE=English_United States.utf8   
+[3] LC_MONETARY=English_United States.utf8
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.utf8    
+
+time zone: America/New_York
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] MVMR_0.4.6  coloc_5.2.3
+
+loaded via a namespace (and not attached):
+ [1] crayon_1.5.3       mixsqp_0.3-54      vctrs_0.7.3        cli_3.6.6         
+ [5] rlang_1.2.0        susieR_0.14.2      generics_0.1.4     S7_0.2.2          
+ [9] data.table_1.18.4  glue_1.8.1         plyr_1.8.9         gridExtra_2.3.1   
+[13] viridis_0.6.5      scales_1.4.0       grid_4.6.1         tibble_3.3.1      
+[17] lifecycle_1.0.5    compiler_4.6.1     dplyr_1.2.1        irlba_2.3.7       
+[21] RColorBrewer_1.1-3 Rcpp_1.1.1-1.1     pkgconfig_2.0.3    farver_2.1.2      
+[25] lattice_0.22-9     viridisLite_0.4.3  R6_2.6.1           tidyselect_1.2.1  
+[29] pillar_1.11.1      magrittr_2.0.5     TwoSampleMR_0.7.9  Matrix_1.7-5      
+[33] tools_4.6.1        gtable_0.3.6       reshape_0.8.10     matrixStats_1.5.0 
+[37] ggplot2_4.0.3     
